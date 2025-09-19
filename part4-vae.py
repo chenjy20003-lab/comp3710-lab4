@@ -1,3 +1,10 @@
+"""
+part4-vae.py — Simple VAE on OASIS
+ - Dataset: lazy loader for preprocessed OASIS (npz/png)
+ - Model: small conv VAE (z=32), MSE recon + KL
+ - Output: logs/ep*_in.png, ep*_recon.png, samples.png
+"""
+
 # part4-vae.py — 简化 VAE on OASIS
 import os, time, glob, math
 import numpy as np, torch, torch.nn as nn
