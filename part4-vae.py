@@ -93,5 +93,9 @@ def main():
     with torch.no_grad():
         z=torch.randn(16,LATENT,device=device); s=model.dec(model.fc(z).view(-1,64,32,32))
         save_img(s,f"{OUT_DIR}/samples.png")
+    # 保存最终权重
+    os.makedirs(OUT_DIR, exist_ok=True)
+    torch.save({"model":model.state_dict()}, f"{OUT_DIR}/vae_final.pt")
+
 
 if __name__=="__main__": main()
