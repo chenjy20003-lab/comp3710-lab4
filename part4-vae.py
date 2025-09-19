@@ -1,3 +1,4 @@
+import argparse
 import random
 """
 part4-vae.py — Simple VAE on OASIS
@@ -64,6 +65,14 @@ def save_img(t,path):
     plt.imshow(grid,cmap="gray"); plt.axis("off"); plt.savefig(path); plt.close()
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--epochs",type=int,default=EPOCHS)
+    parser.add_argument("--batch", type=int,default=BATCH)
+    parser.add_argument("--out",   type=str, default=OUT_DIR)
+    args=parser.parse_args()
+    global EPOCHS,BATCH,OUT_DIR
+    EPOCHS,BATCH,OUT_DIR = args.epochs, args.batch, args.out
+
     os.makedirs(OUT_DIR,exist_ok=True)
     ds=MRIDataset(DATA_DIR,IMG_SIZE); n=len(ds)//10
     train,val=torch.utils.data.random_split(ds,[len(ds)-n,n])
