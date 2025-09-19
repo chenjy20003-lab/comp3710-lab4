@@ -1,3 +1,4 @@
+import random
 """
 part4-vae.py — Simple VAE on OASIS
  - Dataset: lazy loader for preprocessed OASIS (npz/png)
@@ -16,6 +17,7 @@ from sklearn.decomposition import PCA
 
 # ---- config ----
 DATA_DIR = "/home/groups/comp3710/OASIS_preprocessed"
+SEED=42; np.random.seed(SEED); torch.manual_seed(SEED); random.seed(SEED)
 OUT_DIR, IMG_SIZE, LATENT, BATCH, EPOCHS = "logs", 128, 32, 64, 5
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
